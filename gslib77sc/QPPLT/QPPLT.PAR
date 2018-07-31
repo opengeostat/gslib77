@@ -1,0 +1,16 @@
+                  Parameters for QPPLT
+                  ********************
+
+START OF PARAMETERS:
+../data/cluster.dat              \file with first set of data (X axis)
+3   0                            \  columns for variable and weight
+../data/data.dat                 \file with second set of data (Y axis)
+3   0                            \  columns for variable and weight
+0.0        1.0e21                \  trimming limits
+qpplt.ps                         \file for PostScript output
+1                                \0=Q-Q plot, 1=P-P plot
+2300                             \number of points to plot (<0 for all)
+0.0     20.0                     \X minimum and maximum
+0.0     20.0                     \Y minimum and maximum
+1                                \0=arithmetic, 1=log scaling
+Small Data Set Versus Clustered Data  \Title

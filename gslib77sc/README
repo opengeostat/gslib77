@@ -1,0 +1,17 @@
+
+
+README file for DOSEXEC GSLIB 2.0        Last Revised: February 14, 1997
+
+
+This directory contains the README file that you are currently reading
+and a version of the GSLIB programs for an IBM PC.  Some notes:
+
+o. They do require the use of the memory extending programs in the bin
+   directory and may not run on your vintage PC.
+
+o. The executables are in the bin directory together with the normal
+   files in the GSLIB bin directory
+
+o. The allowable dimensions have been reduced to 2-D X/Y models 150
+   cells on a side and 10000 data.  These limits could, of course, be
+   increased and the programs recompiled.

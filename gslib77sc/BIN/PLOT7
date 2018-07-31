@@ -1,0 +1,136 @@
+#!/bin/csh
+#
+#
+#
+if($#argv < 8) then
+        echo "  "
+        echo "    This command requires 8 arguments:"
+        echo "      1-7 - GSLIB PostScript plot files, and"
+        echo "          - an output file"
+        echo "  "
+        exit
+endif
+set OUTFILE=$argv[$#argv]
+set thedate = `date`
+
+
+#                    Header and Footer
+
+cat<<END>$OUTFILE
+%!
+
+% Created by: `whoami` 
+% Date      : $thedate
+% Directory : `pwd`
+
+% To import this file into other PostScript documents:
+%     1. delete "Header and Footer"
+%     2. delete final "showpage" (last line of this file)
+%     3. uncomment the EOF (last line in file), i.e., remove leading %_
+%     4. uncomment the line below "Uncomment the following for EPS"
+%     5. uncomment the EPS Header, i.e., remove leading %_
+%     6. delete all lines above "%!PS-Adobe-3.0 EPSF-3.0"
+%     7. the result will be 6.0" wide by 4.5" high
+
+%                       EPS Header
+
+%Uncomment the following seven lines for EPS
+% %!PS-Adobe-3.0 EPSF-3.0
+% %%BoundingBox: 0 0 432 324
+% %%Creator: GSLIB
+% %%Title:   Combined with plot7
+% %%CreationDate: 
+% %%EndComments
+% -1.3333 72 mul -0.75 72 mul translate
+
+%                    Header and Footer
+
+/rtext{ dup stringwidth pop -1 div 0 rmoveto show } def
+/ctext{ dup stringwidth pop -2 div 0 rmoveto show } def
+/ltext{show} def
+/Times-Bold findfont 24 scalefont setfont
+4.25 72 mul 10.2 72 mul moveto ( ) ctext          % Upper centered title
+/Times findfont 9 scalefont setfont
+0.50 72 mul  0.5 72 mul moveto ($OUTFILE ) ltext
+4.25 72 mul  0.5 72 mul moveto ( ) ctext          % Lower centered label
+8.00 72 mul  0.5 72 mul moveto ($thedate ) rtext
+END
+
+cat<<END>>$OUTFILE
+
+%                     First Plot File
+
+gsave 1.333 72 mul 7.95 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $1 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                    Second Plot File
+
+gsave 4.5 72 mul 7.95 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $2 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                     Third Plot File
+
+gsave 1.333 72 mul 5.55 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $3 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                    Fourth Plot File
+
+gsave 4.5 72 mul 5.55 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $4 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                     Fifth Plot File
+
+gsave 1.333 72 mul 3.15 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $5 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                     Sixth Plot File
+
+gsave 4.5 72 mul 3.15 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $6 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+END
+
+cat<<END>>$OUTFILE
+
+%                    Seventh Plot File
+
+gsave 2.92 72 mul 0.75 72 mul translate 0.6667 0.6667 scale
+END
+sed -e "1,11 d" -e "s/\%\%EOF//g" -e "$ d" < $7 >> $OUTFILE
+cat<<END>>$OUTFILE
+grestore
+% %%EOF
+showpage
+END

@@ -1,0 +1,10 @@
+                  Parameters for POSTSIM
+                  **********************
+
+START OF PARAMETERS:
+sgsim.out                        \file with simulated realizations
+50                               \   number of realizations
+-0.001   1.0e21                  \   trimming limits
+20   20   1                      \nx, ny, nz
+postsim.out                      \file for output array(s)
+3   0.0001                       \output option, output parameter
